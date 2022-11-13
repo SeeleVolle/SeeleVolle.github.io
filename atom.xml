@@ -6,15 +6,29 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://SeeleVolle.github.io/"/>
-  <updated>2022-11-12T16:11:33.314Z</updated>
+  <updated>2022-11-13T07:21:26.066Z</updated>
   <id>https://SeeleVolle.github.io/</id>
   
   <author>
-    <name>Squarehunag</name>
+    <name>Squarehuang</name>
     
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>mine</title>
+    <link href="https://SeeleVolle.github.io/mine.html"/>
+    <id>https://SeeleVolle.github.io/mine.html</id>
+    <published>2022-11-13T07:21:26.000Z</published>
+    <updated>2022-11-13T07:21:26.066Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>test</title>
@@ -35,66 +49,6 @@
     
     </summary>
     
-    
-  </entry>
-  
-  <entry>
-    <title>VMware 安装 CentOS 8.1 完整教程 </title>
-    <link href="https://SeeleVolle.github.io/vmware-an-zhuang-centos-8-1-wan-zheng-jiao-cheng.html"/>
-    <id>https://SeeleVolle.github.io/vmware-an-zhuang-centos-8-1-wan-zheng-jiao-cheng.html</id>
-    <published>2020-03-05T10:29:16.000Z</published>
-    <updated>2022-11-12T12:47:50.311Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;我使用的&lt;font color=&quot;red&quot; size=&quot;3&quot;&gt;VMware&lt;/font&gt;版本：&lt;font color=&quot;red&quot; size=&quot;3&quot;&gt;VMware 15 Pro&lt;/font&gt;&lt;/p&gt;
-&lt;p&gt;镜像：&lt;font color=&quot;red&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="Linux" scheme="https://SeeleVolle.github.io/categories/Linux/"/>
-    
-    
-      <category term="VMware" scheme="https://SeeleVolle.github.io/tags/VMware/"/>
-    
-      <category term="CentOS" scheme="https://SeeleVolle.github.io/tags/CentOS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Github + Hexo 搭建个人博客超详细教程</title>
-    <link href="https://SeeleVolle.github.io/1.html"/>
-    <id>https://SeeleVolle.github.io/1.html</id>
-    <published>2020-02-18T13:17:35.000Z</published>
-    <updated>2022-11-12T12:47:50.309Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;&lt;img src=&quot;https://muyiio-1300292673.cos.ap-chongqing.myqcloud.com/%E5%8D%9A%E5%AE%A2/_posts/1/01.png&quot; alt&gt;&lt;/p&gt;
-&lt;p&gt;&lt;font color=&quot;magenta&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="Blog" scheme="https://SeeleVolle.github.io/categories/Blog/"/>
-    
-    
-      <category term="Github" scheme="https://SeeleVolle.github.io/tags/Github/"/>
-    
-      <category term="Hexo" scheme="https://SeeleVolle.github.io/tags/Hexo/"/>
-    
-      <category term="博客搭建" scheme="https://SeeleVolle.github.io/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/"/>
     
   </entry>
   
