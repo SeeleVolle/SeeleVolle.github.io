@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://SeeleVolle.github.io/"/>
-  <updated>2022-11-30T10:22:10.663Z</updated>
+  <updated>2022-12-14T15:17:47.759Z</updated>
   <id>https://SeeleVolle.github.io/</id>
   
   <author>
@@ -15,6 +15,52 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>解决文件夹删除需要管理员权限</title>
+    <link href="https://SeeleVolle.github.io/jie-jue-wen-jian-jia-shan-chu-xu-yao-guan-li-yuan-quan-xian.html"/>
+    <id>https://SeeleVolle.github.io/jie-jue-wen-jian-jia-shan-chu-xu-yao-guan-li-yuan-quan-xian.html</id>
+    <published>2022-12-14T15:15:41.000Z</published>
+    <updated>2022-12-14T15:17:47.759Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;strong&gt;有效方法&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;参见&lt;a href=&quot;https://www.zhihu.com/question/55517641&quot; target=&quot;_blank&quot;
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Linux 学习记录</title>
+    <link href="https://SeeleVolle.github.io/linux-xue-xi-ji-lu.html"/>
+    <id>https://SeeleVolle.github.io/linux-xue-xi-ji-lu.html</id>
+    <published>2022-12-04T13:45:24.000Z</published>
+    <updated>2022-12-06T00:28:49.648Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;Linux命令学习&quot;&gt;&lt;a href=&quot;#Linux命令学习&quot; class=&quot;headerlink&quot; title=&quot;Linux命令学习&quot;&gt;&lt;/a&gt;Linux命令学习&lt;/h3&gt;&lt;hr&gt;
+&lt;h5 id=&quot;1-Linux中的解压缩-压缩命令&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>初雪</title>
