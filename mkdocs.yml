@@ -32,7 +32,7 @@ theme:
     - toc:
       toc_depth: 3
     - meta
-  custom_dir: overrides
+  #custom_dir: overrides
   icon:
     repo: fontawesome/brands/github
 repo_url: https://github.com/SeeleVolle
