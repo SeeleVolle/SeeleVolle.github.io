@@ -1,0 +1,7 @@
+authors:
+    Squarehuang:
+        name: Squarehuang        # Author name
+        description: 善良是远行之人的推荐信 # Author description
+        avatar: /blog/assets/avatar.jpg
+        # slug: url           # Author profile slug
+        url: https://github.com/SeeleVolle  # Author website URL

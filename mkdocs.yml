@@ -1,4 +1,112 @@
-site_name: Squarehuang's DejaVu
+site_name: Squarehuang's  DejaVu
 site_url: https://SeeleVolle.github.io
 theme:
   name: material
+  palette:
+    - scheme: default
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
+      primary: blue grey
+      accent: light blue
+    - scheme: slate
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
+      primary: blue grey
+      accent: light blue
+  language: zh
+
+  features:
+    - toc.integrate
+    - navigation.instant
+    - navigation.tabs
+    - navagation.sections
+    - navagation.top
+    - navigation.expand
+    - search.suggest
+    - search.highlight
+    - contents.tabs.link
+    - contents.code.annotation
+    - contents.code.copy
+    - toc:
+      toc_depth: 3
+    - meta
+  custom_dir: overrides
+  icon:
+    repo: fontawesome/brands/github
+repo_url: https://github.com/SeeleVolle
+repo_name: SeeleVolle
+extra:
+  analytics:
+    provider: google
+    property: G-XXXXXXXXXX
+  social:
+  - icon: fontawesome/solid/paper-plane
+    link: mailto:<jjhuang5@outlook.com>
+    name: 邮箱地址
+copyright: Copyright &copy; 2021 - 2024 squarehuang.cn
+extra_css:
+    - stylesheets/extra.css
+extra_javascript:
+    - javascripts/extra.js
+markdown_extensions:
+  - meta
+  - abbr
+  - tables
+  - footnotes
+  - attr_list
+  - md_in_html
+  - def_list
+  - pymdownx.snippets
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.critic
+  - pymdownx.caret
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.tilde
+  - pymdownx.details
+  - toc:
+        toc_depth: 3
+plugins:
+  - git-revision-date-localized:
+      type: datetime
+      #fallback_to_build_date: true
+      enable_creation_date: false
+  - blog:
+      blog_dir: blog
+      post_date_format: medium
+      post_url_format: "{slug}"
+      post_excerpt: required
+      post_excerpt_separator: <!-- more -->
+      post_excerpt_max_categories: 2
+      post_excerpt_max_authors: 2
+      archive_name: Squarehuang's 归档
+      archive_url_format: "archive/{date}"
+      archive_url_date_format: yyyy
+      categories_name: Squarehuang's 分类
+      categories_url_format: "category/{slug}"
+      authors_file: "{blog}/.authors.yml"
+      pagination_format: "$link_first $link_previous ~2~ $link_next $link_last"
+      pagination_per_page: 5
+      draft: true
+      draft_if_future_date: true  
+nav:
+  - 主页:
+    - home/index.md
+  - 课程笔记:
+    - course/index.md
+  - 论文阅读:
+    - paper/index.md
+  - 工具笔记:
+    - tools/index.md
+  - 个人闲谈:
+    - blog/index.md
+  - 无用收藏:
+    - favorites/index.md
