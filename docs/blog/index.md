@@ -4,8 +4,10 @@
 
 毕竟现在越来越不想折腾了，不过折腾还是很有意思的，不是吗(x，所以可能还是会继续折腾的。
 
-```py title="Welcome.py"
-def main():
-    print("Welcome to my Blog!")
-    return 0
+``` py title="bubble_sort.py"
+    def bubble_sort(items):
+        for i in range(len(items)):
+            for j in range(len(items) - 1 - i):
+                if items[j] > items[j + 1]:
+                    items[j], items[j + 1] = items[j + 1], items[j]
 ```
