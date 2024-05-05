@@ -62,7 +62,6 @@ markdown_extensions:
   - pymdownx.highlight:
       anchor_linenums: true
   - pymdownx.inlinehilite
-  - pymdownx.snippets
   - pymdownx.superfences
   - pymdownx.tabbed:
       alternate_style: true
@@ -71,6 +70,8 @@ markdown_extensions:
   - pymdownx.keys
   - pymdownx.mark
   - pymdownx.tilde
+  - pymdownx.arithmatex:
+        generic: true
   - pymdownx.details
   - toc:
         toc_depth: 3
@@ -98,7 +99,7 @@ plugins:
       draft: true
       draft_if_future_date: true  
 nav:
-  - 主页:
+  - 简介:
     - home/index.md
   - 课程笔记:
     - course/index.md
