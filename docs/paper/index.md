@@ -1,3 +1,5 @@
-# Index
+# 扉页
 
- **Wait for Construction!**
+记录一些论文阅读笔记..
+  
+**善始者实繁，克终者盖寡**
