@@ -114,8 +114,12 @@ nav:
       PowerInfer:Fast Large Language Model Serving with a Consumer-grade GPU: paper/PowerInfer.md
       Sheared LLaMA:Accelerating Language Model Pre-training via Structured Pruning: paper/SHEARED LLama.md
       DejaVu:Conditional Regenerative Learning to Enhance Dense Prediction: paper/DejaVu.md
+      ATOM:LOW-BIT QUANTIZATION FOR EFFICIENT AND ACCURATE LLM SERVING: paper/Atom.md
+      GEAR:An Efficient KV Cache Compression Recipe for Near-Lossless Generative Inference of LLM: paper/GEAR.md
   - 工具笔记:
       扉页: tools/index.md
+      Mysql使用记录: tools/Mysql.md
+      GoF23笔记: tools/GoF23 Notes.md
   # - 个人闲谈:
   #     - blog/index.md
   - 无用收藏:
