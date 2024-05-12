@@ -46,6 +46,11 @@ dynamic vs static:
 + 将outliers量化为8位，来保持精度和效率之间的平衡
 + 量化KV-cache到低精度来减少内存移动
 
+Atom LLama架构：
+
+<img src="../assets/image-20240509100411900.png" alt="image-20240509100411900" style="zoom:75%;" />
+
+
 量化流程如下：
 
 <img src="../assets/image-20240508092029094.png" alt="image-20240508092029094" style="zoom:75%;" />
@@ -63,6 +68,8 @@ Weight matrix的重排序使用校准数据离线进行，只用进行一次。A
 进一步提升准确率
 
 Fused GEMM operator：首先对于每个group使用TensorCore进行的低精度的乘法计算，然后将结果还原并进行FP16的加法得到最终结果。即将Dequantization和原先的MMA算子进行了融合。
+
+<img src="../assets/image-20240509100350959.png" alt="image-20240509100350959" style="zoom:75%;" />
 
 **Dynamic quantization process** 
 
