@@ -7,6 +7,15 @@
     sudo apt install mysql-server
 ```
 
+## Install on Debian12
+参考[官方doc](https://dev.mysql.com/doc/mysql-installation-excerpt/8.3/en/linux-installation-debian.html)
+```bash
+wget https://dev.mysql.com/get/mysql-apt-config_0.8.30-1_all.deb
+sudo dpkg -i mysql-apt-config_0.8.30-1_all.deb
+sudo apt update
+sudo apt install mysql-server
+```
+
 ## 解决启动后默认访问不了问题
 1. 修改`/etc/mysql/mysql.conf.d/mysqld.cnf`文件，在`[mysqld]`下添加`skip-grant-tables`，意为跳过权限检查，并重启Mysql服务
 2. 登录后修改mysql.user表中的`plugin`和`authentication_string`字段，解决直接alter table引发的socket报错
