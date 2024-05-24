@@ -118,8 +118,9 @@ nav:
       GEAR:An Efficient KV Cache Compression Recipe for Near-Lossless Generative Inference of LLM: paper/GEAR.md
   - 工具笔记:
       扉页: tools/index.md
-      Mysql使用记录: tools/Mysql.md
-      GoF23笔记: tools/GoF23 Notes.md
+      Mysql: tools/Mysql.md
+      GoF23: tools/GoF23 Notes.md
+      Docker: tools/Docker.md
   # - 个人闲谈:
   #     - blog/index.md
   - 无用收藏:
