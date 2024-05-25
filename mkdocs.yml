@@ -1,5 +1,37 @@
 site_name: Squarehuang's  DejaVu
-site_url: https://SeeleVolle.github.io
+site_url: https://squarehuang.cn
+repo_url: https://github.com/SeeleVolle/SeeleVolle.github.io
+repo_name: SeeleVolle/SeeleVolle.github.io
+edit_uri: https://github.com/SeeleVolle/SeeleVolle.github.io/tree/main/docs/
+site_description: Squarehuang的博客
+site_author: Squarehuang
+
+nav:
+  - 简介:
+      扉页: index.md
+  - 课程笔记:
+      - course/index.md
+  - 论文阅读:
+      扉页: paper/index.md
+      Transformer_Review: paper/Transformer_Review.md
+      A Simple and Effective Pruning Approach for Large Language Models: paper/Wanda.md
+      SparseGPT:Massive Language Models Can Be Accurately Pruned in One-Shot: paper/SparseGPT.md
+      PowerInfer:Fast Large Language Model Serving with a Consumer-grade GPU: paper/PowerInfer.md
+      Sheared LLaMA:Accelerating Language Model Pre-training via Structured Pruning: paper/SHEARED LLama.md
+      DejaVu:Conditional Regenerative Learning to Enhance Dense Prediction: paper/DejaVu.md
+      ATOM:LOW-BIT QUANTIZATION FOR EFFICIENT AND ACCURATE LLM SERVING: paper/Atom.md
+      GEAR:An Efficient KV Cache Compression Recipe for Near-Lossless Generative Inference of LLM: paper/GEAR.md
+  - 工具笔记:
+      扉页: tools/index.md
+      Mysql: tools/Mysql.md
+      GoF23: tools/GoF23 Notes.md
+      Docker: tools/Docker.md
+      SSH: tools/ssh.md
+  # - 个人闲谈:
+  #     - blog/index.md
+  - 无用收藏:
+    - favorites/index.md
+
 theme:
   name: material
   palette:
@@ -18,20 +50,23 @@ theme:
   language: zh
 
   features:
-    - toc.integrate
-    # - navigation.instant
+    - content.code.copy
+    - content.code.select
+    - content.code.annotate
+    # 页面编辑
+    - content.action.edit
+    # 底部导航
+    - navigation.footer
+    # 顶部导航
     - navigation.tabs
-    - navagation.sections
-    - navagation.top
-    - navigation.expand
+    # 返回顶部
+    - navigation.top
+    # 搜索
     - search.suggest
     - search.highlight
-    - contents.tabs.link
-    - contents.code.annotation
-    - contents.code.copy
-    - toc:
-      toc_depth: 3
-    - meta
+    - search.share
+
+
   #custom_dir: overrides
   icon:
     repo: fontawesome/brands/github
@@ -54,18 +89,27 @@ extra_javascript:
     - https://polyfill.io/v3/polyfill.min.js?features=es6
     - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
 markdown_extensions:
-  - meta
+  # Admonition
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
   - abbr
   - tables
   - footnotes
+  # Grid, Image
   - attr_list
   - md_in_html
+  # Icon
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg 
+  # List
   - def_list
   - pymdownx.snippets
+  # Code Block
   - pymdownx.highlight:
       anchor_linenums: true
   - pymdownx.inlinehilite
-  - pymdownx.superfences
   - pymdownx.tabbed:
       alternate_style: true
   - pymdownx.critic
@@ -73,11 +117,19 @@ markdown_extensions:
   - pymdownx.keys
   - pymdownx.mark
   - pymdownx.tilde
+  #MathJax
   - pymdownx.arithmatex:
         generic: true
-  - pymdownx.details
+  #Keys
+  - pymdownx.keys:
+      separator: +
+      strict: false
+      camel_case: false
+  #Toc
   - toc:
-        toc_depth: 3
+      permalink: true
+      toc_depth: 3
+
 plugins:
   - git-revision-date-localized:
       type: datetime
@@ -101,28 +153,21 @@ plugins:
       pagination_per_page: 5
       draft: true
       draft_if_future_date: true  
-nav:
-  - 简介:
-      扉页: home/index.md
-  - 课程笔记:
-      - course/index.md
-  - 论文阅读:
-      扉页: paper/index.md
-      Transformer_Review: paper/Transformer_Review.md
-      A Simple and Effective Pruning Approach for Large Language Models: paper/Wanda.md
-      SparseGPT:Massive Language Models Can Be Accurately Pruned in One-Shot: paper/SparseGPT.md
-      PowerInfer:Fast Large Language Model Serving with a Consumer-grade GPU: paper/PowerInfer.md
-      Sheared LLaMA:Accelerating Language Model Pre-training via Structured Pruning: paper/SHEARED LLama.md
-      DejaVu:Conditional Regenerative Learning to Enhance Dense Prediction: paper/DejaVu.md
-      ATOM:LOW-BIT QUANTIZATION FOR EFFICIENT AND ACCURATE LLM SERVING: paper/Atom.md
-      GEAR:An Efficient KV Cache Compression Recipe for Near-Lossless Generative Inference of LLM: paper/GEAR.md
-  - 工具笔记:
-      扉页: tools/index.md
-      Mysql: tools/Mysql.md
-      GoF23: tools/GoF23 Notes.md
-      Docker: tools/Docker.md
-      SSH: tools/ssh.md
-  # - 个人闲谈:
-  #     - blog/index.md
-  - 无用收藏:
-    - favorites/index.md
+  - git-authors:
+      enabled: 
+  - glightbox:
+      touchNavigation: true
+      loop: false
+      effect: zoom
+      slide_effect: slide
+      width: auto
+      height: auto
+      zoomable: true
+      draggable: true
+      auto_caption: false
+      caption_position: bottom
+      background: white
+      shadow: true
+      manual: false
+  - search
+      
