@@ -121,6 +121,7 @@ nav:
       Mysql: tools/Mysql.md
       GoF23: tools/GoF23 Notes.md
       Docker: tools/Docker.md
+      SSH: tools/ssh.md
   # - 个人闲谈:
   #     - blog/index.md
   - 无用收藏:
