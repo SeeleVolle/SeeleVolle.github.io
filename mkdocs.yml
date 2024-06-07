@@ -30,7 +30,8 @@ nav:
   # - 个人闲谈:
   #     - blog/index.md
   - 无用收藏:
-    - favorites/index.md
+      网页收藏: favorites/index.md
+      Markdown收录: favorites/markdown.md
 
 theme:
   name: material
