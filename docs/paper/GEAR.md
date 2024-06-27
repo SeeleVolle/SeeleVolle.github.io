@@ -1,4 +1,4 @@
-# GEAR
+# GEAR:An Efficient KV Cache Compression Recipe for Near-Lossless Generative Inference of LLM:
 
 Generative Inference with Approximation Error Reduction
 

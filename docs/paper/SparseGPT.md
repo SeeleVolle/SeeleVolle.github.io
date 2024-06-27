@@ -1,4 +1,4 @@
-# SparseGPT
+# SparseGPT:Massive Language Models Can Be Accurately Pruned in One-Shot
 
 核心：通过近似算法解决了Reconstruction的时间复杂度过高的问题，解决了Hessians矩阵在不同行之间不同所引入的求逆复杂度。
 

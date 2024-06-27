@@ -6,33 +6,6 @@ edit_uri: https://github.com/SeeleVolle/SeeleVolle.github.io/tree/main/docs/
 site_description: Squarehuang的博客
 site_author: Squarehuang
 
-nav:
-  - 简介:
-      扉页: index.md
-  - 课程笔记:
-      - course/index.md
-  - 论文阅读:
-      扉页: paper/index.md
-      Transformer_Review: paper/Transformer_Review.md
-      A Simple and Effective Pruning Approach for Large Language Models: paper/Wanda.md
-      SparseGPT:Massive Language Models Can Be Accurately Pruned in One-Shot: paper/SparseGPT.md
-      PowerInfer:Fast Large Language Model Serving with a Consumer-grade GPU: paper/PowerInfer.md
-      Sheared LLaMA:Accelerating Language Model Pre-training via Structured Pruning: paper/SHEARED LLama.md
-      DejaVu:Conditional Regenerative Learning to Enhance Dense Prediction: paper/DejaVu.md
-      ATOM:LOW-BIT QUANTIZATION FOR EFFICIENT AND ACCURATE LLM SERVING: paper/Atom.md
-      GEAR:An Efficient KV Cache Compression Recipe for Near-Lossless Generative Inference of LLM: paper/GEAR.md
-  - 工具笔记:
-      扉页: tools/index.md
-      Mysql: tools/Mysql.md
-      GoF23: tools/GoF23 Notes.md
-      Docker: tools/Docker.md
-      SSH: tools/ssh.md
-  # - 个人闲谈:
-  #     - blog/index.md
-  - 无用收藏:
-      网页收藏: favorites/index.md
-      Markdown收录: favorites/markdown.md
-
 theme:
   name: material
   palette:
@@ -62,17 +35,31 @@ theme:
     - navigation.tabs
     # 返回顶部
     - navigation.top
+    # 点击标签回到首页
+    - navigation.tracking
+    - navigation.indexes
     # 搜索
     - search.suggest
     - search.highlight
     - search.share
 
-
   #custom_dir: overrides
   icon:
     repo: fontawesome/brands/github
-repo_url: https://github.com/SeeleVolle
-repo_name: SeeleVolle
+    admonition:
+      info: fontawesome/solid/anchor
+      note: fontawesome/solid/pen-nib
+      abstract: fontawesome/solid/list
+      tip: fontawesome/solid/lightbulb
+      success: fontawesome/solid/check
+      question: fontawesome/solid/circle-question
+      warning: fontawesome/solid/triangle-exclamation
+      failure: material/alien
+      danger: fontawesome/solid/virus
+      bug: fontawesome/solid/robot
+      example: fontawesome/solid/flask
+      quote: fontawesome/solid/link
+      
 extra:
   analytics:
     provider: google
@@ -172,3 +159,37 @@ plugins:
       manual: false
   - search
       
+nav:
+  - "简介":
+    - "简介": index.md
+  - "课程笔记":
+    - course/index.md
+  - "论文阅读":
+    - paper/index.md
+    - paper/Transformer_Review.md
+    - paper/Wanda.md
+    - paper/SparseGPT.md
+    - paper/PowerInfer.md
+    - paper/SHEARED LLama.md
+    - paper/DejaVu.md
+    - paper/Atom.md
+    - paper/GEAR.md
+    - paper/PIM_DL.md
+    - paper/LUT-NN.md
+    - paper/DistServe.md
+    - paper/FastDecode.md
+    - paper/DEFT.md
+  - 技术积累:
+    - tech/index.md
+    - "常用工具":
+      - tech/tools/Mysql.md
+      - tech/tools/Docker.md
+      - tech/tools/ssh.md
+    - "编程语言 | 范式":
+      - tech/coding/GoF23 Notes.md
+      - tech/coding/modernC++.md
+  - 个人闲谈:
+    - blog/index.md
+  - 无用收藏:
+    - 网页总览: favorites/index.md
+    - Markdown语法: favorites/markdown.md

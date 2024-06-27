@@ -1,4 +1,4 @@
-# SHEARED LLAMA
+# Sheared LLAMA:Accelerating Language Model Pre-training via Structured Pruning
 
 Pruning基础知识：
 

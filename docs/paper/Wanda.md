@@ -1,4 +1,4 @@
-# Wanda
+# Wanda:A Simple and Effective Pruning Approach for Large Language Models
 
 剪枝算法核心：
 
