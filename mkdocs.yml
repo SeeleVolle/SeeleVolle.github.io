@@ -164,6 +164,8 @@ nav:
     - "简介": index.md
   - "课程笔记":
     - course/index.md
+    - course/cs23n.md
+    - course/大数据存储与计算技术.md
   - "论文阅读":
     - paper/index.md
     - paper/Transformer_Review.md
@@ -188,6 +190,8 @@ nav:
     - "编程语言 | 范式":
       - tech/coding/GoF23 Notes.md
       - tech/coding/modernC++.md
+      - tech/coding/CUDA.md
+      - tech/coding/PIM.md
   - 个人闲谈:
     - blog/index.md
   - 无用收藏:
