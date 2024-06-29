@@ -186,6 +186,9 @@ nav:
 #    - paper/SpGETT.md
   - 技术积累:
     - tech/index.md
+    - "Machine Learning":
+      - tech/ml/Linear Algebra.md
+      - tech/ml/MachineLearning.md
     - "常用工具":
       - tech/tools/Mysql.md
       - tech/tools/Docker.md
