@@ -292,7 +292,7 @@ CMD ["./app"]
 
 ## Docker内使用MPI
 ......还没实践过
-<img src="../assets/Docker_MPI.png" style="zoom: 100%" />
+<img src="../../assets//Docker_MPI.png" style="zoom: 100%" />
 
 ## Docker Compose实践
 `Compose`项目是Docker官方的开源项目，负责实现对Docker容器集群的快速编排，即「定义和运行多个 Docker 容器的应用」。

@@ -164,7 +164,7 @@ nav:
     - "简介": index.md
   - "课程笔记":
     - course/index.md
-    - course/cs23n.md
+    - course/cs231n.md
     - course/大数据存储与计算技术.md
   - "论文阅读":
     - paper/index.md
@@ -181,17 +181,21 @@ nav:
     - paper/DistServe.md
     - paper/FastDecode.md
     - paper/DEFT.md
+#Review part
+#    - papet/Preble.md
+#    - paper/SpGETT.md
   - 技术积累:
     - tech/index.md
     - "常用工具":
       - tech/tools/Mysql.md
       - tech/tools/Docker.md
       - tech/tools/ssh.md
-    - "编程语言 | 范式":
+    - "编程语言 | 范式 | Linux":
       - tech/coding/GoF23 Notes.md
       - tech/coding/modernC++.md
       - tech/coding/CUDA.md
       - tech/coding/PIM.md
+      - tech/coding/Linux.md
   - 个人闲谈:
     - blog/index.md
   - 无用收藏:

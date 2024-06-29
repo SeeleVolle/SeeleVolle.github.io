@@ -4,21 +4,13 @@
 
 [Standard library functions — UPMEM DPU SDK 2024.1.0 Documentation](https://sdk.upmem.com/2024.1.0/04_Stdlib.html)
 
-#### DEBUG
-
-一些dpu-lldb常见操作：
-
-```shell
-dpu-lldb
-process launch --stop-at-entry
-process continue
-frame variable/x checksum
-target variable/x checksum
-breakpoint set --source-pattern-regexp "return"
-parray/x 20 &input[0]
-memory read
-memory write -i sample.bin '&buffer[0]'
-```
+#### Coding Tips
++ Runtime Library在重启启动时不会重置系统资源，包括Mutexes、semaphore和barrier counter
++ shorts和integers的乘法和除法代价很高
++ 尽量避免使用浮点和64位变量
++ 建议使用16个tasklet来减少内存访问的延迟
++ 每个 DPU 只能访问其自己的 MRAM 中的数据。建议组织数据流，使DPU执行尽可能独立于外部数据。
++ 与 DPU WRAM 的通信比与 MRAM 之间的复制慢。此外，与 MRAM 相比，WRAM 是更小的存储器。因此，DPU WRAM 应该用于共享少量数据。共享大缓冲区，应该使用copies to/from MRAM
 
 #### 线程管理和同步
 
@@ -177,11 +169,179 @@ mram_read(const __mram_ptr void *from, void *to, unsigned int nb_of_bytes)
 
 `dpu_broadcast_to(struct dpu_set_t set, const char *symbol_name, uint32_t symbol_offset, const void *src, size_t length, dpu_xfer_flags_t flags)`：将一个buffer广播到所有DPU中
 
-`dpu_broadcast_to(struct dpu_set_t set, const char *symbol_name, uint32_t symbol_offset, const void *src, size_t length, dpu_xfer_flags_t flags)`：在一次传输中将不同的buffer传输到一组DPU中
+`dpu_push_xfer(struct dpu_set_t set, const char *symbol_name, uint32_t symbol_offset, const void *src, size_t length, dpu_xfer_flags_t flags)`：在一次传输中将不同的buffer传输到一组DPU中
 
 **Rank Transfer Interface**
 
 `dpu_prepare_xfer`：将buffer属性赋给一组DPU，可以在`dpu_push_xfer`方法中使用
 
 `dpu_push_xfer`：使用之前定义的缓冲区，按照给定方向，DPU symbol name，DPU symbol length进行传输
+
+#### Advanced Features of Host API
+
+**Multiple Ranks Transfer**
+
+在一个具有多个DPU rank的DPU set中，使用copy function默认会使用多线程来进行copy操作这些Multi-ranks operation，可以以下方式禁用：
+
+```cpp
+dpu_alloc(DPU_ALLOCATE_ALL, "nrThreadsPerRank=0", &dpu_set);
+```
+
+**Asynchronism**
+
+`dpu_broadcast_to`和`dpu_push_xfer`可以通过将`dpu_xfer_flags_t `设置成`DPU_XFER_ASYNC`(默认是`DPU_XFER_DEFAULT`)来将这些操作变为异步操作，rank可以独立的完成transfer操作。在同步模式下，API会等待set中的所有rank完成一个操作后才会执行另一个，异步模式会独立的管理每个rank。
+
+`dpu_sync`：使用该函数可以等待DPU set中的所有rank的异步操作执行完成
+
+**Callback**
+```cpp 
+dpu_error_t dpu_callback(struct dpu_set_t set, dpu_error_t (*fct)(struct dpu_set_t set, uint32_t rank_id, void *arg), void *arg, dpu_callback_flags_t flags);
+```
+
+`dpu_callback`：该回调函数允许用户在一些异步操作之间进行函数调用，根据不同的flags会产生不同的行为
++ DPU_CALLBACK_DEFAULT: 默认情况下，`dpu_callback`函数会在DPU set中的每个rank上执行一次，并等待所有rank执行完毕
++ DPU_CALLBACK_ASYNC：每个rank的`dpu_callback`调用独立进行，不会等待，需要调用`dpu_async`进行同步
++ DPU_CALLBACK_ASYNC | DPU_CALLBACK_NONBLOCKING：对于NONBLOCKING来说，该回调独立于之后发起的任何`dpu_callback`,`dpu_sync`不会等待该回调结束，需要由用户来确保完成。同时，hostAPI需要更多的线程资源来处理同时运行的多个callbacks，所以需要修改`dpu_alloc`中的`nrThreadsPerRank `
+<img src="../../assets/imagePIM_1.png" style="zoom: 100%;" />
++ DPU_CALLBACK_ASYNC | DPU_CALLBACK_SINGLE_CALL: 与常规的异步行为相同，但是他只会对相同的DPU Set上执行一次回调函数
++ DPU_CALLBACK_ASYNC | DPU_CALLBACK_SINGLE_CALL | DPU_CALLBACK_NONBLOCKING: 
+<img src="../../assets/imagePIM_2.png" style="zoom: 100%;"/>
+
+
+#### Logging 
+**Logging from dpu-lldb**
+
+在DPU程序中直接`printf`即可
+
+**Logging from Host**
+
+`dpu_log_read(struct dpu_set_t set, FILE *stream)`: 使用该函数，可以将DPU程序中的log打印到文件中(stdout)，但是只有在`DPU_FOREACH`中才能使用这个函数。潜在风险在于，Log保存在DPU的MRAM的circular buffer中，在主机端调用时当程序的完整LOG大于缓冲区大小时，会发生错误
+
+可以使用`STDOUT_BUFFER_INIT(size)`来设定缓冲区大小
+
+#### Measuring performances
+RUNTIME Environment提供了一套函数，可以检测硬件性能计数器。可以通过`CLOCKS_PER_SEC`将DPU周期计数转换成时间(秒)。该变量在DPU端可用，也可以通过拷贝在主机端使用。第二个
++ perfcounter_config
+  + COUNT_CYCLES: 周期包括指令的执行时间和内存传输
+  + COUNT_INSTRUCTIONS：计算已用的指令
+  + COUNT_SAME
+  + 第二个变量设置为true，代表重置计数器，否则代表保留当前计数器值
++ perfcounter_get: 返回计数器值
+
+一个使用例子：host测量了DPU程序中循环的执行时间
+```c
+#include <perfcounter.h>
+#include <stdio.h>
+
+__host uint32_t nb_cycles;
+
+int main() {
+
+  perfcounter_config(COUNT_CYCLES, true);
+
+  int loop = 1e7;
+  while (loop)
+    loop--;
+
+  nb_cycles = perfcounter_get();
+
+  return 0;
+```
+
+```c
+****#include <dpu.h>
+#include <stdio.h>
+#include <time.h>
+
+#ifndef DPU_BINARY
+#define DPU_BINARY "./frequency_example"
+#endif
+
+static inline double my_clock(void) {
+  struct timespec t;
+  clock_gettime(CLOCK_MONOTONIC_RAW, &t);
+  return (1.0e-9 * t.tv_nsec + t.tv_sec);
+}
+
+int main() {
+  struct dpu_set_t set, dpu;
+
+  DPU_ASSERT(dpu_alloc(1, NULL, &set));
+  printf("DPU allocated\n");
+  DPU_ASSERT(dpu_load(set, DPU_BINARY, NULL));
+
+  double start = my_clock();
+  DPU_ASSERT(dpu_launch(set, DPU_SYNCHRONOUS));
+  double end = my_clock();
+
+  // retrieve number of cycles on DPU
+  uint32_t nb_cycles;
+  DPU_FOREACH(set, dpu) {
+    DPU_ASSERT(
+        dpu_copy_from(dpu, "nb_cycles", 0, &nb_cycles, sizeof(uint32_t)));
+  }
+
+  // retrieve DPU frequency
+  uint32_t clocks_per_sec;
+  DPU_FOREACH(set, dpu) {
+    DPU_ASSERT(dpu_copy_from(dpu, "CLOCKS_PER_SEC", 0, &clocks_per_sec,
+                             sizeof(uint32_t)));
+  }
+
+  printf("DPU cycles: %u\n", nb_cycles);
+  printf("DPU time: %.2e secs.\n", (double)nb_cycles / clocks_per_sec);
+
+  printf("Host elapsed time: %.2e secs.\n", end - start);
+
+  DPU_ASSERT(dpu_free(set));
+  return 0;
+}
+```
+
+### Debuging on UPMEM
+
+#### Supported Commands in dpu-lldb
++ `process launch`: Start a DPU program
++ `process continue`: Resume a DPU program
++ `process interrupt`: Stop a DPU program
++ `thread list`: List all the threads of a DPU and where each thread is at
++ `thread select`: Select a thread as the currently active thread
++ `thread step-in`: Source level single step in current thread
++ `thread step-over`: Source level single step in current thread, stepping over calls
++ `thread step-inst`: Single step one instruction in current thread
++ `thread step-inst-over`: Single step one instruction in current thread, stepping over calls
++ `thread step-out`: Finish executing the function of the currently selected frame and return to its call site
++ `thread until`: Run the current or specified thread until it reaches a given line number or address or leaves the current function
++ `thread backtrace`: Show the stack of the current thread
++ `frame select`: Select a frame by index from within the current thread and make it the current frame
++ `frame info`: List information about the currently selected frame in the current thread
++ `frame select --relative=<n> or up <n>`: Go up “n” frames in the stack (1 frame by default)
++ `frame select --relative=-<n> or down <n>`: Go down “n” frames in the stack (1 frame by default)
++ `frame variable`: Show frame variables
++ `target variable`: Read global variables for the DPU program
++ `breakpoint set|list|delete`: Manage breakpoint in the DPU program
++ `register read`: Dump the contents of one or more register values from the current frame
++ `register write`: Modify a single register value
++ `memory read`: Read from the memory of the DPU program
++ `memory write`: Write to the memory of the DPU program
++ `disassemble`: Disassemble specified instructions of the DPU program
+
+一些dpu-lldb常见操作：
+
+```shell
+dpu-lldb
+process launch --stop-at-entry
+process continue
+frame variable/x checksum
+target variable/x checksum
+breakpoint set --source-pattern-regexp "return"
+parray/x 20 &input[0]
+memory read
+memory write -i sample.bin '&buffer[0]'
+```
+
+内存映射：DPU的所有内存都会映射到`dpu-lldb`中的一个地址空间, IRAM需要通过`disassemble`来读取
++ WRAM: `0x00000000 - 0x00010000`
++ MRAM: `0x08000000 - 0x0c000000`
++ IRAM: `0x80000000 - 0x80008000`
 

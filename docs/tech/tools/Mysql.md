@@ -92,11 +92,11 @@ written by *squarehuang*
 
 + 权限分布：
 
-<img src="../assets/image-20230407113321962.png" alt="image-20230407113321962" style="zoom:50%;" />
+<img src="../../assets//image-20230407113321962.png" alt="image-20230407113321962" style="zoom:50%;" />
 
 + 权限检查顺序：
 
-<img src="../assets/image-20230407113258432.png" alt="image-20230407113258432" style="zoom:50%;" />
+<img src="../../assets//image-20230407113258432.png" alt="image-20230407113258432" style="zoom:50%;" />
 
 + 用户操作：
 
@@ -536,7 +536,7 @@ written by *squarehuang*
   xxx #不同语句用分号隔开
   END;
   ```
-<img src="../assets//image-20230402221556084.png" alt="image-20230402221556084" style="zoom:50%;" />
+<img src="../../assets///image-20230402221556084.png" alt="image-20230402221556084" style="zoom:50%;" />
 
   `FOR EACH ROW`表示任何一条记录上的操作满足触发事件后都会触发该触发器
 
@@ -659,19 +659,19 @@ written by *squarehuang*
 
   + 注意当decimal类型长度小于14的时候,向decimal类型字段中插入数据时，小数位无效的0会被自动去掉，这时候页面显示需要进行小数位格式化
 
-  <img src="../assets//Pasted image 20230320135025.png" alt="Pasted image 20230320135025.png" style="zoom:50%;" />
+  <img src="../../assets///Pasted image 20230320135025.png" alt="Pasted image 20230320135025.png" style="zoom:50%;" />
 
 + 日期和时间类型：DATETIME、DATE、TIMESTAMP、TIME、YEAR，当指定不合法的Mysql不能表示的值使用零值
 
   + 插入date类型数据要加上单引号
 
-<img src="../assets//Pasted image 20230320135735.png" alt="Pasted image 20230320135735.png" style="zoom:50%;" />
+<img src="../../assets///Pasted image 20230320135735.png" alt="Pasted image 20230320135735.png" style="zoom:50%;" />
 
 
 + 字符串类型：CHAR、VARCHAR、BINARY、VARBINARY、BLOB、TEXT、ENUM和SET  
 
 
-<img src="../assets//Pasted image 20230320135953.png" alt="Pasted image 20230320135953.png" style="zoom:50%;" />
+<img src="../../assets///Pasted image 20230320135953.png" alt="Pasted image 20230320135953.png" style="zoom:50%;" />
 
 
 ##### x.2 NULL值处理

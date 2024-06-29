@@ -68,7 +68,7 @@ Signleton *sgn = Signleton::Instance();
 
 **C++ Tips:** 在C++中，纯虚函数的声明只是代表这个类是一个抽象类，不能产生对象，但是仍然可以为这个类中的纯虚函数指定函数体，当将析构函数设置为纯虚函数时，必须给析构函数指定函数体，因为子类的析构函数调用链默认含有父类的析构函数
 
-<img src="../assets/Factory.png" style="zoom: 100%;" />
+<img src="../../assets//Factory.png" style="zoom: 100%;" />
 
 ```cpp
 //Factory.h
@@ -139,7 +139,7 @@ Product *p = fac->CreateProduct();
   
 关键在于将这一组对象创建封装到一个用于创建对象的类中，维护这样一个创建类。
   
-<img src="../assets/AbstractFactory.png" style="zoom: 100%;" />
+<img src="../../assets//AbstractFactory.png" style="zoom: 100%;" />
 
 ```cpp
 代码实现见设计模式精解PDF：p13
@@ -152,7 +152,7 @@ Product *p = fac->CreateProduct();
 + 用于创建一个复杂对象，这个对象由多个部分组成，而且这些部分是有序的，创建对象的过程是稳定的，但是每一部分的创建是可变的
 
 + 关键在于Director类并不直接返回对象，而是Director类负责调用Builder的接口，将Builder的接口按照一定的顺序调用，最终构建出一个完整的对象
-<img src="../assets/Builder.png" style="zoom: 100%;" />
+<img src="../../assets//Builder.png" style="zoom: 100%;" />
 
 ```cpp
 #include <iostream>
@@ -281,7 +281,7 @@ Prototype *ConcretePrototype::Clone(){
 
 + 用于抽象和具体实现的需求都需要更改的时候，将抽象和具体实现分离，使得两者可以独立的变化
 + 具体来讲，可以看到左侧是抽象部分，右侧是实现部分
-<img src="../assets/Bridge.png" style="zoom: 100%;" />
+<img src="../../assets//Bridge.png" style="zoom: 100%;" />
 
 关于这个"实现"需要做出如下解释：
 >在此处实现并不是指抽象基类的具体子类对基类中抽象方法的实现，而指的是如何去实现用户的需求。
@@ -295,7 +295,7 @@ Prototype *ConcretePrototype::Clone(){
 + 用于将一个类的接口转换成客户希望的另一个接口，使得原本由于接口不兼容而不能一起工作的那些类可以一起工作
 + 分为类模式和对象模式
 
-<img src="../assets/Adapter.png" style="zoom: 100%;" />
+<img src="../../assets//Adapter.png" style="zoom: 100%;" />
 
 通过这张图可以发现，Adapter继承自target类，同时包含一个private的Adaptee类的对象指针，这样就可以在Adapter中的target函数调用Adaptee的具体实现，实现了target和Adaptee的适配.
 
@@ -304,7 +304,7 @@ Prototype *ConcretePrototype::Clone(){
 + 用于动态的给一个对象添加一些额外的职责，就增加功能来说，Decorator模式比生成子类更为灵活。具体是通过组合的方式而不是继承来实现的
 + 可以让父类拥有较少的抽象接口，而子类可以通过Decorator来添加新的功能
 
-<img src="../assets/Decorator.png" style="zoom: 100%;" />
+<img src="../../assets//Decorator.png" style="zoom: 100%;" />
 
 在图中，Decorator和ConcreteComponent都继承自Component，利用多态的思想，ConcreteDecorator中有一个Component的指针，从而在自己的Operation中可以调用ConcreteComponent的Operation，同时ConcreteDecorator为ConcreteComponent添加了新功能。
 
@@ -315,7 +315,7 @@ Prototype *ConcretePrototype::Clone(){
 + 组合模式允许以相同的方式处理单个对象和对象的组合体
 + 用于把一组相似的对象当作一个单一的对象。组合模式依据树形结构来组合对象，用来表示部分以及整体层次
 
-<img src="../assets/Composite.png" style="zoom: 100%;" />
+<img src="../../assets//Composite.png" style="zoom: 100%;" />
 
 
 这里给出详细解释：当你的程序结构有类似树一样的层级关系时，例如文件系统，视图树，公司组织架构等等，如果我们需要以统一的方式来操作单个对象和由这些对象组成的组合对象，就需要使用Composite模式
@@ -340,7 +340,7 @@ Composite
 对象的状态分为“外部状态”和“内部状态”，将可以被共享（不会变化）的状态作为内部状态存储在对象中，而外部对象（例如上面提到的字体、大小等）我们可以在适当的时候将
 外部对象作为**参数传递**给对象（例如在显示的时候，将字体、大小等信息传递给对象
 
-<img src="../assets/Flyweight.png" style="zoom: 100%;" />
+<img src="../../assets//Flyweight.png" style="zoom: 100%;" />
 
 图中，FlyweightFactory拥有一个管理、存储对象的仓库或者叫对象池(vector)，GetFlyweight（）消息会遍历对象池中的对象，如果已经存在则直接返回给 Client，否则创建一个新的对象返回给 Client。
   
@@ -350,7 +350,7 @@ Composite
 + 用于在高层对外提供一个简单的统一交互接口，掩藏子模块内部的细节，解耦了系统
 + 非常简单，如图所示
 
-<img src="../assets/Facade.png" style="zoom: 100%;" />
+<img src="../../assets//Facade.png" style="zoom: 100%;" />
 
 **7.Proxy模式**
 
@@ -364,7 +364,7 @@ Composite
   + 保护代理：可以控制对一个对象的访问权限，为不同用户提供不同级别的使用权限。
   + 智能引用：要为一个对象的访问（引用）提供一些额外的操作时可以使用。例如智能指针
   
-<img src="../assets/Proxy.png" style="zoom: 100%;" />
+<img src="../../assets//Proxy.png" style="zoom: 100%;" />
 
 在示例图中，Proxy有一个Subject的对象指针，用ConcreteSubject初始化后，调用Proxy的方法的时候，就可以调用ConcreteSubject的对应方法
 
@@ -377,7 +377,7 @@ Composite
 + 简单来说，Template 模式实际上就是利用面向对象中多态的概念实现算法实现细节和高层接口的松耦合，所以是采取继承的方式实现的
 + 注意的是，原语操作(细节算法)定义为protected，而TemplateMethod定义为Public,在TemplateMethod里面调用原语操作从而实现真正的调用
 
-<img src="../assets/Template.png" style="zoom: 100%;" />
+<img src="../../assets//Template.png" style="zoom: 100%;" />
 
 Template体现了DIP的原则，即高层模块调用底层模块的操作，底层模块实现高层模块的接口，这样控制权在父类（高层模块），低层模块反而要依赖高层模块。 
 
@@ -386,7 +386,7 @@ Template体现了DIP的原则，即高层模块调用底层模块的操作，底
 + 策略模式
 + 和Template模式同样解决了具体实现和抽象的解耦问题，但是它是通过组合的方式实现的，具体来讲。Strategy 模式将逻辑（算法）封装到一个类（Context）里面，通过组合的方式将具体算法的实现在组合对象中实现，再通过委托的方式将抽象接口的实现委托给组合对象实现
 
-<img src="../assets/Strategy.png" style="zoom: 100%;" />
+<img src="../../assets//Strategy.png" style="zoom: 100%;" />
 
 在示例中，Context对象有一个DoAction接口，但是有一个Strategy类的对象指针，所以通过DoAction函数内调用Strategy的AlgorithmInterface接口，实现了具体实现和接口的分离
 
@@ -400,7 +400,7 @@ Template体现了DIP的原则，即高层模块调用底层模块的操作，底
 + 解决的是FSM状态太多时容易出错，状态逻辑和动作实现没有分离的问题。
 + 当一个对象内在状态改变时允许改变其行为，这个对象看起来像是改变了其类。
 
-<img src="../assets/State.png" style="zoom: 100%;" />
+<img src="../../assets//State.png" style="zoom: 100%;" />
 
 在具体实现中，将 State 声明为 Context 的友元类（friend class），其作用是让 State 模式访问 Context 的 protected 接口 ChangeSate。这样，State 模式就可以在状态转换时调用 Context 的 ChangeState 接口，实现状态的转换。
 
@@ -414,7 +414,7 @@ State 及其子类中的操作都将 Context*传入作为参数，其主要目�
 + 观察者模式，也叫发布订阅模式
 + 定义对象间的一种一对多的依赖关系，当一个对象的状态发生改变时，所有依赖于它的对象都可以得到通知并自动更新。
 
-<img src="../assets/Observer.png" style="zoom: 100%;" />
+<img src="../../assets//Observer.png" style="zoom: 100%;" />
 
 在示例图中， Subject 提供依赖于它的观察者 Observer 的注册（Attach）和注销（Detach）操作，并且提供了使得依赖于它的所有观察者同步的操作（Notify）。
 
@@ -428,7 +428,7 @@ State 及其子类中的操作都将 Context*传入作为参数，其主要目�
 + 备忘录模式
 + 在不破坏封装性的前提下，在某一时刻捕获一个对象的内部状态，并在该对象之外保存这个状态，这样以后就可以将该对象恢复到原先保存的状态
 
-<img src="../assets/Memento.png" style="zoom: 100%;" />
+<img src="../../assets//Memento.png" style="zoom: 100%;" />
 
 在示例图中，Originator是需要保存状态的对象，Memento是保存状态的对象，Memento 的接口都声明为 private，而将 Originator 声明为 Memento 的友元类，从而将Originator的状态保存在Memento类中。两者之中都有一个State变量来保存状态，Originator可以通过CreateMemento来创建一个Memento对象，通过RestoreToMomento来恢复状态
 
@@ -437,7 +437,7 @@ State 及其子类中的操作都将 Context*传入作为参数，其主要目�
 + 中介者模式，用于对象间的交互和通信
 + 将多对多的通信转化为一对多的通信
 
-<img src="../assets/Mediator.png" style="zoom: 100%;" />
+<img src="../../assets//Mediator.png" style="zoom: 100%;" />
 
 在示例图中，每个Colleague对象都有一个Mediator的指针，维护一个Mediator对象，而AB之间的交互就可以通过ConcreteMediator的接口来实现，从而实现了对象之间的解耦，AB之间不用维护各自的引用。
 
@@ -446,7 +446,7 @@ State 及其子类中的操作都将 Context*传入作为参数，其主要目�
 + 命令模式
 + 将请求封装到一个对象中，并将请求的接收者存放到具体的ConcreteCommand中，实现了调用操作的对象和操作的具体实现解耦
 
-<img src="../assets/Command.png" style="zoom: 100%;" />
+<img src="../../assets//Command.png" style="zoom: 100%;" />
 
 在示例图中，Command是一个抽象类，定义了一个Execute的接口，ConcreteCommand继承自Command，实现了Execute的接口，同时维护了一个Receiver的指针。
 
@@ -469,7 +469,7 @@ Invoker
 + 访问者模式
 + 将所有的更新封装到一个类中，并由待更改类提供一个接收接口
 
-<img src="../assets/Visitor.png" style="zoom: 100%;" />
+<img src="../../assets//Visitor.png" style="zoom: 100%;" />
 
 Visitor 模式的关键是双分派（Double-Dispatch）的技术,即执行的操作将取决于请求的种类和接收者的类型。具体调用哪一个具体的 Accept （）操作，有两个决定因素：
 + 1.Element 的类型。因为 Accept（）是多态的操作，需要具体的 Element 类型的子类才可以决定到底调用哪一个 Accept（）实现；
@@ -496,7 +496,7 @@ if (dynamic_cast<ConcreteElementA*>(elem)) {
 + 避免请求发送者与接收者耦合在一起，让多个对象都有可能接收请求，将这些对象连接成一条链，并且沿着这条链传递请求，直到有对象处理它为止
 + 通常用于一个请求需要被多个对象中的某一个处理，但是具体对象需要在运行时根据条件决定
 
-<img src="../assets/Chain.png" style="zoom: 100%;" />
+<img src="../../assets//Chain.png" style="zoom: 100%;" />
 
 在示例图中，Handler是一个抽象类，定义了一个HandleRequest的接口，ConcreteHandler继承自Handler，实现了HandleRequest的接口，同时维护了一个Successor的指针，记录后继对象。在HandleRequest中，如果自己可以处理请求，那么就处理，否则交给后继对象处理。
 
@@ -507,7 +507,7 @@ if (dynamic_cast<ConcreteElementA*>(elem)) {
 + 迭代器模式
 + 用来解决一个聚合对象的遍历问题，将对聚合的遍历封装到一个对象中，参见C++中的Iterator
 
-<img src="../assets/Iterator.png" style="zoom: 100%;" />
+<img src="../../assets//Iterator.png" style="zoom: 100%;" />
 
 感觉没啥好说的，ConcreteAggregate有一个对象数组，保存了所有对象，而ConcreteIterator维护了一个Aggregate的指针，通过Next和IsDone来遍历ConcreteAggregate中的对象
 
@@ -517,6 +517,6 @@ if (dynamic_cast<ConcreteElementA*>(elem)) {
 + 解释器模式
 + 用于定义一个语言的文法，并且建立一个解释器来解释该语言中的句子。用于为用户提供一个实现语法解释器的框架
 + 
-<img src="../assets/Interpreter.png" style="zoom: 100%;" />
+<img src="../../assets//Interpreter.png" style="zoom: 100%;" />
 
 
