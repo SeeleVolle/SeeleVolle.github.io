@@ -186,19 +186,23 @@ nav:
 #    - paper/SpGETT.md
   - 技术积累:
     - tech/index.md
-    - "Machine Learning":
-      - tech/ml/Linear Algebra.md
-      - tech/ml/MachineLearning.md
     - "常用工具":
       - tech/tools/Mysql.md
       - tech/tools/Docker.md
       - tech/tools/ssh.md
+      - tech/tools/nfs.md
     - "编程语言 | 范式 | Linux":
       - tech/coding/GoF23 Notes.md
       - tech/coding/modernC++.md
       - tech/coding/CUDA.md
       - tech/coding/PIM.md
       - tech/coding/Linux.md
+    - "Machine Learning":
+      - tech/ml/Linear Algebra.md
+      - tech/ml/MachineLearning.md
+    - "其他知识":
+      - tech/others/odd.md
+      - tech/others/sparsematrix.md
   - 个人闲谈:
     - blog/index.md
   - 无用收藏:

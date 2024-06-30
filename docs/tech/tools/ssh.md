@@ -41,7 +41,7 @@ AuthorizedKeysFile     .ssh/authorized_keys
 ```sh
 ssh -o StrictHostKeyChecking=no username@hostname
 ```
-+`-N -f`: 不执行远程命令，将ssh挂载在后台。适用于只需要打开端口，不用执行任何远程命令的清空
++ `-N -f`: 不执行远程命令，将ssh挂载在后台。适用于只需要打开端口，不用执行任何远程命令的清空
 + `-L`: 设置本地端口转发，当ssh到192.168.7.23时，将本地的25443端口转发到192.168.6.254的443端口。
 ```sh
 ssh -L 25443:192.168.6.254:443 Squarehuang@192.168.7.23
