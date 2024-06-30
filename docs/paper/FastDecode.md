@@ -3,11 +3,13 @@
 简介：将Transformer模型分成R-Part和S-Part两个部分，key insight是应该在CPU上计算near KV-cache, 通过传递activation tensors而不是KV-cache来减少data transmission，完全将KV-cache从GPU memory中移除。
 
 但是这样做会面临一些问题
+
 + 给CPU额外增添计算任务可能会减缓所有任务的速度，CPU-GPU之间的PCIE带宽较低
 + 两个Part中工作负载的变化模式不同，交替使用CPU-GPU计算时，两者速度差距很大，不能很好的全面利用CPU和GPU
 + 需要对GPU和CPU进行Careful orchestration，需要使用最少的CPU同时能够最大化的使用GPU的计算能力
 
 本文提出了以下工作：
+
 + 将Transformer模型分为了两个部分执行来提高performance
 + 提出了基于KV-cache的near-memory processing system, 使用out-of chassis CPUs的聚合内存带宽来获得更高的吞吐量
 + 提出了一个sequence-level pipeline schedule来平衡两种工作负载，来更好的使用两种硬件

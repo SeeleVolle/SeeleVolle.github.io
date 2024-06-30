@@ -181,6 +181,7 @@ nav:
     - paper/DistServe.md
     - paper/FastDecode.md
     - paper/DEFT.md
+    - paper/Mooncake.md
 #Review part
 #    - papet/Preble.md
 #    - paper/SpGETT.md
@@ -191,6 +192,8 @@ nav:
       - tech/tools/Docker.md
       - tech/tools/ssh.md
       - tech/tools/nfs.md
+      - tech/tools/Git.md
+      - tech/tools/CondaPipNotes.md
     - "编程语言 | 范式 | Linux":
       - tech/coding/GoF23 Notes.md
       - tech/coding/modernC++.md
