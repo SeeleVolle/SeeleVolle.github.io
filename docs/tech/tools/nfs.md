@@ -1,3 +1,0 @@
-# NFS 文件系统及其配置
-
-Wait for learning...
