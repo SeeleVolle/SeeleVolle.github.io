@@ -192,7 +192,7 @@ nav:
       - tech/tools/Docker.md
       - tech/tools/ssh.md
       - tech/tools/Git.md
-      - tech/tools/CondaPipNotes.md
+      - tech/tools/PackageManager.md
       - tech/tools/FileSystem.md
       - tech/tools/Linux.md
       - tech/tools/CMake.md

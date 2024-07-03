@@ -10,8 +10,11 @@ sudo systemctl start ssh
 ### 基本使用
 
 **生成密钥对**
+
+`-t`可以指定使用的非对称加密算法
+
 ```bash
-ssh-keygen -t rsa
+ssh-keygen -t rsa/ed25519
 ```
 使用时需要将生成的`id_rsa.pub`文件拷贝到远程服务器的`~/.ssh/authorized_keys`文件中。
 
@@ -62,6 +65,8 @@ ssh Squarehuang@192.168.6.253 -o "ProxyCommand ssh -W %h:%p 10.10.1.200"
 ```sh
 ssh -J user@host1:port1,user2@host2:port2 user3@host3
 ```
++ `-v`: 启用SSH客户端的Verbose模式，可以详细输出调试信息便于调试、
++ `-i`: 在进行ssh连接时，指定认证所使用的私钥
 
 ### .ssh/config配置
 **基本配置**
