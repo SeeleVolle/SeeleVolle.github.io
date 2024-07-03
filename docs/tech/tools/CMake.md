@@ -1,6 +1,10 @@
 # CMake 学习笔记
 
+### 参考文档
+
 [参考官方Cmake Tutorial](https://cmake.org/cmake/help/latest/guide/tutorial)
+[cmake-examples](https://github.com/ttroy50/cmake-examples/)
+[Cmake中文实战教程](https://brightxiaohan.github.io/CMakeTutorial/)
 
 ### A Basic Starting Point
 
