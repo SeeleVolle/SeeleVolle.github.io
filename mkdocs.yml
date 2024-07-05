@@ -201,6 +201,7 @@ nav:
       - tech/coding/modernC++.md
       - tech/coding/CUDA.md
       - tech/coding/PIM.md
+      - tech/coding/SwiftTransformer.md
     - "Machine Learning":
       - tech/ml/Linear Algebra.md
       - tech/ml/MachineLearning.md
