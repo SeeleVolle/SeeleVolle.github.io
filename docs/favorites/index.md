@@ -1,9 +1,5 @@
-# 网页收藏
+# 扉页
 
-+ [mkdocs配置指南](https://shafish.cn/blog/mkdocs)
-+ [CC98论坛（摸鱼必备x）](https://www.cc98.org)
-+ [ZJUSCT主页](https://www.zjusct.io/)
-
-## 知识详解
-
-[NP,P,NPC,NP-hard问题详解](http://www.matrix67.com/blog/archives/105)
+收藏一些有趣的东西.
+  
+**“我从不怀疑真心，但真心瞬息万变。”**

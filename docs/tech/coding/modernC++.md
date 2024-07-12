@@ -584,7 +584,7 @@ int main() {
 
 + 引用坍缩规则：无论模板参数是什么类型的引用，当且仅当实参类型为右引用时，模板参数才能被推导为右引用类型
 
-  <img src="C:\Users\squarehuang\AppData\Roaming\Typora\typora-user-images\image-20240402215348307.png" alt="image-20240402215348307" style="zoom:50%;" />
+  <img src="../../assets/image-20240402215348307.png" alt="image-20240402215348307" style="zoom:50%;" />
 
 + 在如下的示例中：无论传递参数为左值还是右值，普通传参都会将参数作为左值进行转发，`std::move()`都会将传入的左值作为右值传递，`std::forward()`会保持引用类型
 
@@ -794,9 +794,9 @@ std::unique_ptr<Foo> p2(std::move(p1));
 
 分为特殊字符和限定符，将他们组合在一起就是正则。中括号表达式就是作为一个整体
 
-<img src="C:\Users\squarehuang\AppData\Roaming\Typora\typora-user-images\image-20240407184014235.png" alt="image-20240407184014235" style="zoom:67%;" />
+<img src="../../assets/image-20240407184014235.png" alt="image-20240407184014235" style="zoom:67%;" />
 
-<img src="C:\Users\squarehuang\AppData\Roaming\Typora\typora-user-images\image-20240407184023237.png" alt="image-20240407184023237" style="zoom:67%;" />
+<img src="../../assets/image-20240407184023237.png" alt="image-20240407184023237" style="zoom:67%;" />
 
 ##### std::regex
 
@@ -1335,7 +1335,9 @@ auto str = "abc"_wow1;
 auto num = 1_wow2;
 ```
 
-##### ![image-20240417084714528](C:\Users\squarehuang\AppData\Roaming\Typora\typora-user-images\image-20240417084714528.png)内存对齐
+##### 内存对齐
+
+![image-20240417084714528](../../assets/image-20240417084714528.png)
 
 `alignof、alignas`: 用于对内存对齐进行控制，前者能够获得与平台相关的`std::size_t`的值，后者可以重新修饰某个结构的定义方式
 

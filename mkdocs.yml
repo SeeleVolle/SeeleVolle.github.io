@@ -21,7 +21,6 @@ theme:
         name: Switch to light mode
       primary: blue grey
       accent: light blue
-  language: zh
 
   features:
     - content.code.copy
@@ -78,12 +77,13 @@ extra_javascript:
     - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
 markdown_extensions:
   # Admonition
-  - admonition
+  - admonition #Mkdocs警告框
+  - mdx_truly_sane_lists #列表嵌套
   - pymdownx.details
   - pymdownx.superfences
   - abbr
   - tables
-  - footnotes
+  - footnotes #脚注
   # Grid, Image
   - attr_list
   - md_in_html
@@ -103,8 +103,8 @@ markdown_extensions:
   - pymdownx.critic
   - pymdownx.caret
   - pymdownx.keys
-  - pymdownx.mark
-  - pymdownx.tilde
+  - pymdownx.mark #文本高亮
+  - pymdownx.tilde #文本删除线
   #MathJax
   - pymdownx.arithmatex:
         generic: true
@@ -196,7 +196,7 @@ nav:
       - tech/tools/FileSystem.md
       - tech/tools/Linux.md
       - tech/tools/CMake.md
-    - "编程语言 | 范式 | Linux":
+    - "编程相关 | 代码分析 | Linux":
       - tech/coding/GoF23 Notes.md
       - tech/coding/modernC++.md
       - tech/coding/CUDA.md
@@ -212,6 +212,7 @@ nav:
   - 个人闲谈:
     - blog/index.md
   - 无用收藏:
-    - 网页总览: favorites/index.md
+    - favorites/index.md
+    - 站点收藏: favorites/website.md
     - Markdown语法: favorites/markdown.md
     - 看番记录: favorites/cartoon.md

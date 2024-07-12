@@ -1,5 +1,115 @@
 # SwiftTransformer 
 
+## 计划模块
+
+暂定为(SeeleTransformer)，具体要实现的模块包括四部分，Cuda Base Operator, Layer implementation, Model implementation,  Utils(Pytorch interface, weight convert bash)
+
+### Model Implementation
+
+暂定首先实现GPT模型，推理流程分为如下几个过程：初始化通信库，加载权重，推理，解码结果
+
++ 模型超参数：
+  + GPTHyperParam: 
+    + vocab_size
+    + max_position_embeddings
+    + hidden_size
+    + num_layers
+    + num_q_heads
+    + num_kv_heads
+    + head_dim
+    + ffn_inter_dim
+    + is_rotary_posi_embedding（for rope alternative）
+    + is_rmsnorm(for rmsnorm)
+    + is_attn_qkv_biased
+    + is_attn_out_biased
+    + ffn_activation_type
+  + GptParallelismParam
+    + tensor_para_size
+    + tensor_para_rank
+    + pipeline_para_size
+    + pipeline_para_rank
+      + layer_begin, layer_end, local_layer_num
+  + GptPagedAttnParam
+    + block_size
+    + max_num_block_per_req
++ 模型类定义:
+  + weight_params
+  + communicator_params
+  + GPU buffers for requests:
+    + inputs: decoder_input/output, d_input_lens, d_sum_prev_input_lens?
+    + input embedding: d_token_ids, d_position_ids
+    + input indexing: ith_context_req_req_index, ith_context_req_token_index, ith_decoding_req_req_index, ith_decoding_req_token_index
+    + layer internal computation: qkv_buf, attn_out_buf, ffn_inter_buf_1, ffn_inter_buf_2, context_stage_kernel_m_buf, context_stage_kernel_l_buf
+    + forwardDecoder: attention_out
+    + output projection: output_projection_last_tokens_buf, *output_projection_tokens_buf*, output_projection_result_buf
+
++ 通信库初始化：暂定实现tp和pp，需要初始化MPI，NCCL，其中MPI划分为每个pp和tp通信组(暂时不用PP)，NCCL分为TP和PP 通信器(暂时不用PP)
++ 加载权重：
+  + 权重转换脚本：从torch.load()转换为SwiftTransformer的格式
+    + 转换逻辑：
+      + 首先从input中读取文件，如果权重未被分片，直接返回模型权重(state_dict)，否则进行处理，tensorMergeFunc是一个在不同维度上对不同权重进行拼接的函数，不同类型的权重需要在不同的维度上进行cat来拼接成一个state_dict。具体过程是，首先是resharedWeight函数，首先将所有相同key(weight)的tensor放到一起得到`sharded_tensors: dict[str, List[torch.Tensor]]`，然后调用`tensor_merge_func`将这个每个list进行拼接，得到`dict[str, torch.Tensor]`，就是转换权重前所用的`state_dict`。
+      + 然后进行具体的转换逻辑，对于llama来说，就是从state_dict中通过正则得到模型层数，然后对state_dict中wqkv拼接到一起，并将wo进行转置，最后将tensor_dict分割并保存。在进行分割和保存时，以llama2为例，定义一个命名池，对于不同类型的权重，将其在不同维度上拆成8份存到文件中，而对于shared_tensor，则直接存到文件中
+  + 具体加载权重：
+    + Embedding:
+      + embed_token_weight
+      + embed_positioins_weight
+    + Transformer
+      + attn_qkv_weight/bias
+      + attn_out_weight/bias
+      + attn_layernorm_weight
+      + attn_layernorm_bias(rmsnorm不要)
+      + ffn1_weight/bias
+      + ffn2_weight/bias
+      + ffn3_weight?(gated_ffn需要)
+      + final_layernorm_weight/bias(GeluFFN前的layernorm)
+    + Final:
+      + final_layernorm_weight/bias
+      + final_logitgemm_weight
+  + 加载逻辑：首先根据是否有embedding_layer加载embedding weights，然后根据当前layer范围加载layer权重，最后根据是否是pp最后一阶段加载final_layernorm权重
+  + 其中output_weight，ffn1_weight, ffn2_weight, ffn3_weight需要进行tp
+  + 初始化权重
++ 推理过程：
+  + 分配k/v cache内存：采用PagedAttention，一开始就先在GPU上分配所有的Block, 记录了每个Request=分配的block数量，然后初始化block_table, 这个block_table存储了每个request所分配的块的索引(从0-max_num_block_per_req) 
+  + 为decoding stage的数组分配内存，保存了output of the last token
+  + Context Stage， 执行gpt.forward
+  + Decoding Stage: 在Decoding stage中，input只用包括所有unfinished request的last token，判断每个request(input tokens + output tokens)是否需要分配新的Block，用一个二维数组记录每个Request的下一轮的input tokens。但是由于request可能在本轮中结束，所以kvcache的位置需要移动
+    + 一次forward的实现：首先初始化三个host/device数组，h_input_lens, h_is_context_stage, h_sum_prev_input_lens和num_tokens。然后因为PP，所以对第一个Stage进行特殊处理，进行EmbedingandPositionEncode, 同理最后一个Stage需要特殊处理，需要调用layernorm。中间调用forwardDecoder，首先从上一个阶段收取数据，并将数据广播给tp内所有的设备。
+    + forwardDecoder的实现：分配内存后，调用之前写的attention和layernorm, addbias
++ 解码结果：
+  + VocabDecoder
+
+### Layer implementation
+
++ attention.cc
++ ffn.cc
++ gated_ffn.cc
+
+### Operator
+
++ addbias.cu
++ count_nan.cu
++ embedding.cu
++ findmax.cu
++ fused_activ_multiply.cu
++ fused_addbias_activ.cu
++ fused_context_stage_attention.cu
++ fused_decoding_stage_attention.cu
++ fused_decoding_stage_attention_mha.cu
++ gather_last_tokens.cu
++ kvcache_mgmt.cu
++ layernorm.cu
++ reduction.cu
++ rmsnorm.cu
++ rotary_posi_embedding.cu
++ unfused_attention.cu
++ xformers_attention.cu
+
+### Utils
+
++ Cublas Wrapper
+
+## 框架代码分析
+
 ### 推理流程
 
 Prompts -> Tokenizer -> Embeding+positional encoding -> LLM(TransformerxN) -> Samplings -> New Token -> Embedding+positional encoding
@@ -21,6 +131,7 @@ GPT模型结构：
 模块主要分为kernel, layer、model和utils四个文件夹
 
 + Kernel: 引用了xformers库，基于该库实现了以下文件
+
   + activation_types.cuh: 激活函数在GPU上的具体实现，inline+constexpr, 包括了RELU, SILU和GELU
   + addbias.cu: 两个数组point-wise的相加, and batched version
   + count_nan.cu: 计算一个数组内的非零元素个数
@@ -71,3 +182,6 @@ GPT模型结构：
   + st_datatypes.h：定义了一些原型
 
 + pybinding.cc: 定义自定义的PyTorch，没写过
+
+
+
