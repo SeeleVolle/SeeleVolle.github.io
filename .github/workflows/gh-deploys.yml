@@ -22,6 +22,5 @@ jobs:
       - run: pip install mkdocs-git-authors-plugin 
       - run: pip install mkdocs-glightbox
       - run: pip install mdx-truly-sane-lists
-      - run: pip install markdown-admonition
       - run: mkdocs gh-deploy --force
   
