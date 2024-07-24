@@ -194,13 +194,13 @@ nav:
       - tech/tools/Git.md
       - tech/tools/PackageManager.md
       - tech/tools/FileSystem.md
-      - tech/tools/Linux.md
       - tech/tools/CMake.md
     - "编程相关 | 代码分析 | Linux":
       - tech/coding/GoF23 Notes.md
       - tech/coding/modernC++.md
       - tech/coding/CUDA.md
       - tech/coding/PIM.md
+      - tech/coding/Linux.md
       - tech/coding/SwiftTransformer.md
     - "Machine Learning":
       - tech/ml/Linear Algebra.md

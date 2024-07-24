@@ -61,7 +61,7 @@ Tree attention definition: $\text{Tree-Attention}(n)=\text{Attention}(P_{root \r
 
 KV-Guided Tree Split strategy with tree-topology awareness: 即以每个node的KV cache来进行分组，消除了KV cache的IO cost，引入了额外的Q的IO，但由于在tree decoding的时候，KV的token length通常远远大于Q，因此Q的IO可以忽略不计。并且DefT不需要casual mask来进行之后的attention计算.
 
-<img src="../assets/image-20240605133402029.png" alt="image-20240605133402029" style="zoom:50%;" />
+<img src="./assets/image-20240605133402029.png" alt="image-20240605133402029" style="zoom:50%;" />
 
 
 **Attention Calculation**: apply attention algorithms to QKV groups for final attention results.

@@ -75,7 +75,7 @@ Self-Attention：对每个token生成三个向量q,k,v，具体计算过程中�
 
 对于**MLP**来说：模型参数主要是两个线性层$W_1\in R^{h\times 4h},W_2\in R^{4h\times h}$, 加上两个偏置$b_1 \in R^{4h},b_2 \in R^{h}$，所以参数量一共是$8h^2+5h$
 
-在Attention和MLP层之后，都有一个Layer norm操作，一般情况下其中有一个缩放参数$\gamma \in R^h$和平移参数$\beta\in R^h$, 所以参数量为$4h$
+在Attention和MLP层之后，都有一个Layer norm操作，一般情况下其中有一个缩放参数$\gamma \in R^h$和平移参数$\beta\in R^h$, 所以两个LayerNorm的参数量为$4h$
 
 所以一个**Transformer**层的参数是$12h^2+13h$
 
