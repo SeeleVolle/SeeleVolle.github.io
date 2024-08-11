@@ -277,3 +277,11 @@
 **3、当一个Git仓库嵌套在另一个Git仓库中时clone**
 
 此时在进行clone本仓库后，需要执行`git submodule update --init --recursive`, 作用是递归更新所有子模块，如果子模块不存在则进行初始化。
+
+**4. git-filter-repo删除文件git记录**
+
+最近遇到一个很尴尬的问题，不小心把实验的一个标准例程传到了远程仓库中，我们想要彻底清除掉这个文件在远程仓库的信息该怎么办呢？正常删除方法当然是不行的，例如做一个revert的提交，仍然可以从历史版本中获取文件信息。这个时候，我们需要完整的更改Git的提交历史信息，为此便引入了 `git-filter-repo` 工具的使用。具体流程如下：
+
++ 1. 切换到仓库根目录, 执行`git-filter-repo --path 与根目录的相对目录 --invert-paths --force`，需要切换到之前的提交历史查看是否成功将文件信息从提交历史中删去
++ 2. 重新添加远程仓库，`git remote add origin url`
++ 3. 强制提交历史， `git push origin main --force`

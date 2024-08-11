@@ -195,6 +195,7 @@ nav:
       - tech/tools/PackageManager.md
       - tech/tools/FileSystem.md
       - tech/tools/CMake.md
+      - tech/tools/Vim.md
     - "编程相关 | 代码分析 | Linux":
       - tech/coding/GoF23 Notes.md
       - tech/coding/modernC++.md
