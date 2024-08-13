@@ -4,16 +4,16 @@
 
 从图中，可以看到，一个DIMM module上有多个DRAM chip，在一个DRAM chip中有多个Bank，给每个Bank加上一个DPU处理单元，在总线上加上一个control interface来对这些DPU进行控制。在一个DIMM中，所有chip共享同一根内存总线，一个chip内的所有bank可以同时跟CPU进行内存通信，即一个chip内的所有DPU可以跟CPU进行内存通信。
 
-<img src="../../assets//image-PIM1.png" style="zoom: 100%;" />
+<img src="../assets/image-PIM1.png" style="zoom: 100%;" />
 
 而在一个DPU中，有64MB的MRAM，64KB的WRAM和4KB的IRAM. 
 
-<img src="../../assets//image-PIM.png" style="zoom: 100%;" />
+<img src="../assets/image-PIM.png" style="zoom: 100%;" />
 
 
 由于DPU的硬件特性，在ISA上有以下特征:
 
-<img src="../../assets//image-PIM2.png" style="zoom: 100%;" />
+<img src="../assets/image-PIM2.png" style="zoom: 100%;" />
 
 
 + No FPU
